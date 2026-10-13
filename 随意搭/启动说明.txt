@@ -1,0 +1,11 @@
+随意搭 · 网站前端 Demo
+
+1. 安装 Node.js。
+2. 解压 ZIP，在随意搭文件夹中打开 PowerShell。
+3. 执行 npm.cmd install，等待完成。
+4. 执行 npm.cmd run dev。
+5. 浏览器访问 http://localhost:3000。
+
+手机访问：电脑与手机连接同一 Wi-Fi，执行 npm.cmd run dev -- -H 0.0.0.0，然后通过电脑 IPv4 地址的 3000 端口访问。
+
+此包包含源码、Logo、依赖锁文件及设计规范。AI 为前端演示，部分操作为展示入口，尚未接真实 AI 或数据库。

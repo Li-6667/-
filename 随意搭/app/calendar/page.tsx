@@ -1,0 +1,2 @@
+import Link from 'next/link';
+export default function Calendar(){return <div className="shell py-16"><div className="eyebrow">OUTFIT CALENDAR</div><h1 className="mt-4 font-serif text-6xl">穿搭日历</h1><div className="mt-10 grid gap-4 md:grid-cols-7">{['一','二','三','四','五','六','日'].map((x,i)=><div className="card min-h-40 p-4" key={x}><span className="muted text-sm">周{x}</span><p className="mt-8 font-serif text-xl">{i<3?['通勤','约会','旅行'][i]:'待安排'}</p></div>)}</div><Link className="btn btn-dark mt-8" href="/stylist">安排一套新搭配 ↗</Link></div>}

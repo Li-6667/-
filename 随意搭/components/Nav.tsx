@@ -1,0 +1,5 @@
+'use client';
+import Link from 'next/link'; import {usePathname} from 'next/navigation';
+const links=[['/','今日穿搭'],['/profile','我的风格'],['/closet','我的衣橱'],['/stylist','AI造型师'],['/looks','我的搭配'],['/beauty-plan','变美计划']];
+export default function Nav(){const path=usePathname();return <header className="sticky top-0 z-20 border-b-2 border-white bg-[#eaf1ff]/80 backdrop-blur"><div className="shell flex h-20 items-center justify-between"><Link href="/" className="flex items-center gap-3"><span className="grid h-10 w-10 place-items-center rounded-[14px] border-2 border-white bg-[#ffb8c6] text-sm font-bold text-[#3f435f] shadow-[4px_4px_8px_#c7d2e8,-3px_-3px_7px_#fff]"><img src="/brand/suiyida-avatar.png" alt="随意搭头像 Logo" width={40} height={40} className="h-full w-full rounded-[12px] object-cover" /></span><span className="text-xl font-bold tracking-wide">随意搭</span></Link><nav className="desktop-only flex gap-5 text-sm">{links.map(([href,label])=><Link key={href} href={href} className={path===href?'rounded-full bg-white/70 px-3 py-2 font-bold shadow-inner':''}>{label}</Link>)}</nav><Link className="pill" href="/admin">后台管理</Link></div></header>}
+
