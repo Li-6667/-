@@ -13,6 +13,12 @@ npm run dev
 
 打开 <http://127.0.0.1:3000>。质量检查：`npm test`、`npm run typecheck`、`npm run lint`、`npm run build`。
 
+## Vercel 部署
+
+公开演示地址为 <https://suiyida-demo.vercel.app/>，首页是重构版，旧版对比为 `/legacy`，教程为 `/upgrade`。浏览器本地数据按域名隔离，不会从 localhost 自动转移到线上。
+
+当前使用 Vercel CLI 从本目录部署到 `andyissonice-makers-projects/suiyida-demo`；`vercel.json` 明确指定 Next.js 框架，不能把它按普通 `public` 静态目录发布。若以后使用 Git 集成，Root Directory 应设置为 `随意搭`。当前部署未建立 Git 自动发布关联，推送 main 不代表线上自动更新。
+
 ## 数据与能力边界
 
 - 档案、测试答案、衣物图片、搭配、收藏、日历、计划和本地模板存于当前浏览器 IndexedDB。首次打开载入标明为“示例”的衣物；可在 `/admin/users` 清空或重新载入。
