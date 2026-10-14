@@ -1,0 +1,14 @@
+{
+  "name": "suiyida-workspace",
+  "private": true,
+  "scripts": {
+    "postinstall": "npm --prefix 随意搭 ci",
+    "dev": "npm --prefix 随意搭 run dev",
+    "build": "npm --prefix 随意搭 run build",
+    "start": "npm --prefix 随意搭 run start",
+    "lint": "npm --prefix 随意搭 run lint",
+    "typecheck": "npm --prefix 随意搭 run typecheck",
+    "test": "npm --prefix 随意搭 test",
+    "test:entrypoints": "node scripts/check-entrypoints.mjs"
+  }
+}
