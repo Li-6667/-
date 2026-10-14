@@ -1,0 +1,1 @@
+export const legacyRoutes = ['', 'profile', 'profile/test', 'profile/test/result', 'style-personality', 'closet', 'closet/upload', 'closet/score', 'stylist', 'stylist/result', 'looks', 'calendar', 'beauty-plan', 'travel', 'try-on', 'admin', 'admin/templates', 'admin/users'];

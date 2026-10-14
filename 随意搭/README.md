@@ -24,3 +24,9 @@ npm run dev
 `/`、`/profile`、`/profile/test`、`/profile/test/result`、`/style-personality`、`/closet`、`/closet/upload`、`/closet/score`、`/stylist`、`/stylist/result`、`/looks`、`/calendar`、`/beauty-plan`、`/travel`、`/try-on`、`/admin`、`/admin/templates`、`/admin/users`。
 
 推荐主路径：`/profile` → `/profile/test` → `/closet/upload` → `/stylist` → `/stylist/result` → `/looks` → `/calendar`。结果页支持 `?look=<搭配 ID>`；不带 ID 时显示最近一次搭配，没有结果则提供明确入口。
+
+## 新旧版对比
+
+新版顶部导航和手机菜单中的“旧版对比”会打开当前页面对应的旧版，例如 `/profile` → `/legacy/profile`。旧版顶部可返回新版同页或新版首页。旧版完整保留改版前提交 `d3f5945` 的 18 个页面和原有模拟交互，不读写新版的本地档案。
+
+旧版静态快照位于 `public/legacy`，已随仓库提交，正常安装和构建不需要单独安装旧版依赖。需要重建快照时执行 `npm run build:legacy`；脚本从指定 Git 提交提取原站，在临时目录构建，仅适配导航及对比提示，再生成独立的 HTML/CSS/JS。新版继续使用当前 Next.js 与 Tailwind 配置，两版样式和运行逻辑相互独立。
