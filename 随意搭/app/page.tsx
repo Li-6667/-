@@ -1,4 +1,50 @@
-import Link from 'next/link';
-const features=[['01','个人风格档案','偏好、尺码、预算和城市，一次建立你的穿衣底图。','/profile'],['02','智能衣橱','上传单品，记录季节、厚薄、待洗状态，随时找到能穿的衣服。','/closet'],['03','AI造型师','对话咨询、指定单品、替换搭配，并解释每个选择的理由。','/stylist'],['04','旅行胶囊衣橱','输入目的地和天数，自动生成不重复的打包清单。','/travel'],['05','穿搭日历','规划一周穿搭，记录今日真实穿着和照片。','/calendar'],['06','虚拟试衣','上传个人照片，预览单品上身效果。','/try-on']];
-export default function Home(){return <div><section className="shell grid min-h-[600px] items-center gap-10 py-14 md:grid-cols-[1.05fr_.95fr]"><div><div className="eyebrow mb-6">TODAY · YOUR PERSONAL STYLIST</div><h1 className="max-w-xl font-serif text-6xl leading-[1.02] md:text-8xl">今天穿什么，<br/><i>问问你的衣橱。</i></h1><p className="muted mt-8 max-w-md text-lg leading-8">快速告诉我今天的场合和需求，随意搭 从你的衣橱里给出一套真正能穿出门的答案。</p><div className="mt-9 flex flex-wrap gap-3"><Link className="btn btn-dark" href="/stylist">开始今日咨询 ↗</Link><Link className="btn btn-soft" href="/calendar">查看穿搭日历</Link></div></div><div className="relative h-[430px] overflow-hidden rounded-[32px] bg-[#d6c8bc]"><div className="absolute inset-5 rounded-[25px] border border-white/50"/><div className="absolute left-6 top-6 rounded-full bg-white/70 px-4 py-2 text-xs">今日推荐 · 通勤</div><div className="absolute bottom-8 left-8 right-8 rounded-2xl bg-white/85 p-5 backdrop-blur"><div className="flex items-center justify-between"><span className="eyebrow">TODAY'S MATCH</span><span>94%</span></div><p className="mt-2 font-serif text-2xl">Quiet luxury, with a little ease.</p><Link className="mt-4 inline-block text-sm underline" href="/stylist/result">查看完整方案 →</Link></div><div className="absolute left-1/2 top-1/2 h-56 w-44 -translate-x-1/2 -translate-y-1/2 rotate-[-7deg] rounded-[50%_50%_8%_8%] bg-[#f0e9df] shadow-2xl"/></div></section><section className="shell border-t border-[#e8e2da] py-20"><div className="mb-10 flex items-end justify-between"><div><div className="eyebrow">YOUR STYLE SPACE</div><h2 className="mt-3 font-serif text-4xl">把穿衣这件事，交给一个系统</h2></div><span className="muted text-sm">6 个模块，覆盖每天的选择</span></div><div className="grid-cards">{features.map(([n,t,d,href])=><Link href={href} className="card transition hover:-translate-y-1" key={n}><div className="flex justify-between"><div className="text-sm text-[#b99a8e]">{n}</div><span>↗</span></div><h3 className="mt-12 font-serif text-2xl">{t}</h3><p className="muted mt-3 leading-7">{d}</p></Link>)}</div></section></div>}
+'use client';
 
+import { useRef } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowRight, Sparkle, TShirt, Heart } from '@phosphor-icons/react';
+import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react';
+
+const steps = [
+  { n: '01', title: '认识你的风格', detail: '从几道轻松的问题开始，留下自己的偏好。', href: '/profile', icon: Sparkle },
+  { n: '02', title: '整理现有衣橱', detail: '把常穿的单品放进来，搭配才有真实依据。', href: '/closet', icon: TShirt },
+  { n: '03', title: '搭出今天的自己', detail: '选择场合和心情，看看衣橱里有哪些可能。', href: '/stylist', icon: Heart },
+];
+export default function Home() {
+  const hero = useRef<HTMLElement>(null);
+  const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: hero, offset: ['start start', 'end start'] });
+  const girlsY = useTransform(scrollYProgress, [0, 1], [0, 130]);
+  const copyY = useTransform(scrollYProgress, [0, 1], [0, -50]);
+  return <div className="home">
+    <section ref={hero} className="home-hero">
+      <div className="hero-grain" aria-hidden="true" />
+      <div className="shell hero-layout">
+        <motion.div className="hero-copy" style={reduce ? undefined : { y: copyY }}>
+          <div className="hero-kicker"><span className="hero-star">✳</span> YOUR CLOSET, YOUR STORY</div>
+          <h1>今天穿什么？<br /><em>穿成你喜欢的样子。</em></h1>
+          <p>从衣橱里已有的衣服出发，让每一天的搭配都更轻松、更像自己。</p>
+          <div className="hero-actions"><Link className="hero-primary" href="/stylist">开始搭配 <ArrowRight size={20} weight="bold" /></Link><Link className="hero-secondary" href="/closet">先看看衣橱 ↗</Link></div>
+          <div className="hero-footnote"><span className="hero-line" /> 两个女孩，一百种今天。这里是可操作的本地 Demo。</div>
+        </motion.div>
+        <div className="hero-stage">
+          <motion.div className="hero-halo" animate={reduce ? undefined : { scale: [1, 1.04, 1], rotate: [0, 2, 0] }} transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }} />
+          <motion.div className="hero-girls" style={reduce ? undefined : { y: girlsY }} animate={reduce ? undefined : { x: [0, 6, 0] }} transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}>
+            <Image src="/demo/girls-retro-v2.png" alt="两位穿着薰衣草紫与薄荷绿服饰的原创复古漫画女孩" fill priority sizes="(max-width: 850px) 90vw, 54vw" />
+          </motion.div>
+          <motion.div className="hero-sticker sticker-a" animate={reduce ? undefined : { y: [0, -12, 0], rotate: [-7, -3, -7] }} transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}>搭配，不必费力 <span>↗</span></motion.div>
+          <motion.div className="hero-sticker sticker-b" animate={reduce ? undefined : { y: [0, 9, 0], rotate: [5, 2, 5] }} transition={{ duration: 5.3, repeat: Infinity, ease: 'easeInOut' }}>today looks lovely.</motion.div>
+          <div className="stage-index">SUIYIDA / 001</div>
+        </div>
+      </div>
+      <div className="scroll-cue">向下看看 <span>↓</span></div>
+    </section>
+    <section className="story-section shell">
+      <div className="story-heading"><p className="eyebrow">A LITTLE LESS GUESSWORK</p><h2>衣橱不是难题。<br /><em>它可以是你的灵感库。</em></h2><p>随意搭把日常选择拆成三个轻巧的动作。没有标准答案，只有更适合今天的可能。</p></div>
+      <div className="story-list">{steps.map(({ n, title, detail, href, icon: Icon }) => <Link href={href} className="story-row" key={n}><span className="story-number">{n}</span><span className="story-icon"><Icon size={30} weight="duotone" /></span><span className="story-text"><strong>{title}</strong><small>{detail}</small></span><ArrowRight className="story-arrow" size={24} /></Link>)}</div>
+    </section>
+    <section className="wardrobe-section"><div className="shell wardrobe-layout"><div className="wardrobe-copy"><p className="eyebrow">A CLOSET FULL OF POSSIBILITIES</p><h2>好搭配，就从<br />手边这几件开始。</h2><p>把衣服画成一张张小卡片，挑选、替换、收藏，每一步都看得见。</p><Link className="btn btn-dark" href="/closet">打开我的衣橱 <ArrowRight size={17} /></Link></div><div className="illustrated-stack"><div className="illustrated-card card-back"><Image src="/demo/garment-pants-v2.png" alt="复古漫画风深色直筒裤插画" fill sizes="240px" /></div><div className="illustrated-card card-middle"><Image src="/demo/garment-jacket-v2.png" alt="复古漫画风淡紫外套插画" fill sizes="240px" /></div><div className="illustrated-card card-front"><Image src="/demo/garment-knit-v2.png" alt="复古漫画风浅色针织上衣插画" fill sizes="240px" /></div></div></div></section>
+    <section className="home-end shell"><p className="eyebrow">READY FOR TODAY?</p><h2>下一套喜欢的搭配，<br />就在你的衣橱里。</h2><Link className="btn btn-dark" href="/stylist">现在开始搭配 <ArrowRight size={18} /></Link><p className="demo-note">本地演示 · 推荐采用固定规则，不接入真实 AI 服务。</p></section>
+  </div>;
+}

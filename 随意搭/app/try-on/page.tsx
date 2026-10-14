@@ -1,2 +1,2 @@
-import Link from 'next/link';
-export default function TryOn(){return <div className="shell py-16"><div className="eyebrow">VIRTUAL TRY-ON</div><h1 className="mt-4 font-serif text-6xl">先试试看，<br/><i>再决定今天怎么穿。</i></h1><div className="card mt-10 max-w-2xl"><div className="grid h-72 place-items-center rounded-2xl border-2 border-dashed border-white bg-[#eaf1ff]"><div className="text-center"><div className="text-5xl">＋</div><p className="mt-3 font-semibold">上传一张正面照片</p><p className="muted mt-2 text-sm">AI 会生成上身效果预览</p></div></div><button className="btn btn-dark mt-6 w-full">开始虚拟试穿</button><Link href="/stylist" className="mt-4 block text-center text-sm underline">回到 AI 造型师</Link></div></div>}
+import { TryOnPage } from '@/components/pages/UtilityPages';
+export default TryOnPage;

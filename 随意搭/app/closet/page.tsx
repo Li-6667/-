@@ -1,3 +1,2 @@
-import Link from 'next/link';
-const items=[['米白针织衫','上衣 · 温柔韩系','bg-[#e9ddd0]'],['黑色直筒裤','下装 · 极简通勤','bg-[#c5c2bd]'],['棕色乐福鞋','鞋履 · 经典复古','bg-[#b89e88]']];
-export default function Closet(){return <div className="shell py-14"><div className="flex flex-wrap items-end justify-between gap-5"><div><div className="eyebrow">MY DIGITAL CLOSET</div><h1 className="mt-3 font-serif text-5xl">我的智能衣橱</h1><p className="muted mt-3">3 件单品 · AI 已为你完成分类</p></div><Link className="btn btn-dark" href="/closet/upload">＋ 添加单品</Link></div><div className="mt-10 grid-cards">{items.map(([name,desc,bg])=><div className="card" key={name}><div className={`h-48 rounded-2xl ${bg} grid place-items-center`}><div className="h-32 w-24 rounded-[40%_40%_8%_8%] bg-white/60 shadow-lg"/></div><h3 className="mt-5 font-serif text-2xl">{name}</h3><p className="muted mt-1 text-sm">{desc}</p><div className="mt-5 flex gap-2"><span className="pill">春秋</span><span className="pill">通勤</span></div></div>)}</div></div>}
+import { ClosetPage } from '@/components/pages/ClosetPages';
+export default ClosetPage;

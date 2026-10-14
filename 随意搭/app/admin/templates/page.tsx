@@ -1,2 +1,2 @@
-import Link from 'next/link';
-export default function Templates(){return <div className="shell py-14"><Link href="/admin" className="muted text-sm">← 返回看板</Link><div className="flex flex-wrap items-end justify-between gap-4"><h1 className="mt-5 font-serif text-5xl">造型模板</h1><button className="btn btn-dark">＋ 新建模板</button></div><div className="mt-10 grid-cards">{[['秋季约会','温柔','针织衫 + 半裙'],['周一通勤','清冷','白衬衫 + 直筒裤'],['周末出游','松弛','风衣 + 牛仔裤']].map(([a,b,c])=><div className="card" key={a}><span className="pill">{b}</span><h2 className="mt-6 font-serif text-2xl">{a}</h2><p className="muted mt-2">{c}</p><button className="mt-8 text-sm underline">编辑模板</button></div>)}</div></div>}
+import { AdminTemplatesPage } from '@/components/pages/AdminPages';
+export default AdminTemplatesPage;
